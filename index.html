@@ -125,24 +125,76 @@
             box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.35);
         }
 
-        .prototype-image {
-            width: 100%;
-            height: auto;
-            max-height: 360px;
-            object-fit: contain;
-            object-position: top center;
-            background-color: #f8fafc;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
+        .prototype-image,
         .prototype-image-wide {
             width: 100%;
-            height: auto;
-            max-height: 560px;
+            height: 300px;
             object-fit: contain;
             object-position: top center;
             background-color: #f8fafc;
             border-bottom: 1px solid #f1f5f9;
+            cursor: zoom-in;
+        }
+
+        @media (max-width: 640px) {
+            .prototype-image,
+            .prototype-image-wide {
+                height: 220px;
+            }
+        }
+
+        .image-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(6px);
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            width: min(96vw, 1200px);
+            max-height: 92vh;
+            padding: 1rem;
+            border-radius: 1.25rem;
+            background: #ffffff;
+            box-shadow: 0 24px 80px -24px rgba(0, 0, 0, 0.55);
+        }
+
+        .image-modal-content img {
+            width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            border-radius: 0.875rem;
+            background-color: #f8fafc;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -0.9rem;
+            right: -0.9rem;
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 9999px;
+            background: #0f172a;
+            color: #ffffff;
+            font-weight: 800;
+            box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-caption {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #475569;
+            text-align: center;
         }
     </style>
 </head>
@@ -368,7 +420,7 @@
 
             <div class="grid md:grid-cols-2 gap-8">
                 <article class="prototype-shot bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-                    <img src="./assets/screenshots/streamlit_3_sql.png" alt="AI Data Insight Copilot SQL 생성 화면" class="prototype-image">
+                    <img src="./assets/screenshots/streamlit_3_sql.png" alt="AI Data Insight Copilot SQL 생성 화면" class="prototype-image" onclick="openImageModal(this.src, this.alt)">
                     <div class="p-6">
                         <div class="text-xs font-bold text-indigo-600 mb-2">STEP 01 · SQL 생성</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">자연어 질문을 데이터마트 기준 SQL로 변환</h3>
@@ -379,7 +431,7 @@
                 </article>
 
                 <article class="prototype-shot bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-                    <img src="./assets/screenshots/streamlit_4_result.png" alt="AI Data Insight Copilot 결과 미리보기 화면" class="prototype-image">
+                    <img src="./assets/screenshots/streamlit_4_result.png" alt="AI Data Insight Copilot 결과 미리보기 화면" class="prototype-image" onclick="openImageModal(this.src, this.alt)">
                     <div class="p-6">
                         <div class="text-xs font-bold text-teal-600 mb-2">STEP 02 · 결과 미리보기</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">생성된 SQL의 실행 결과를 테이블로 확인</h3>
@@ -390,7 +442,7 @@
                 </article>
 
                 <article class="prototype-shot bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-                    <img src="./assets/screenshots/streamlit_5_debug.png" alt="AI Data Insight Copilot Debug 화면" class="prototype-image">
+                    <img src="./assets/screenshots/streamlit_5_debug.png" alt="AI Data Insight Copilot Debug 화면" class="prototype-image" onclick="openImageModal(this.src, this.alt)">
                     <div class="p-6">
                         <div class="text-xs font-bold text-rose-600 mb-2">STEP 03 · 검증 정보</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Planner 분석 결과와 검증 흐름 확인</h3>
@@ -401,7 +453,7 @@
                 </article>
 
                 <article class="prototype-shot bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-                    <img src="./assets/screenshots/streamlit_7_summary.png" alt="AI Data Insight Copilot 최종 요약 화면" class="prototype-image">
+                    <img src="./assets/screenshots/streamlit_7_summary.png" alt="AI Data Insight Copilot 최종 요약 화면" class="prototype-image" onclick="openImageModal(this.src, this.alt)">
                     <div class="p-6">
                         <div class="text-xs font-bold text-amber-600 mb-2">STEP 04 · 비즈니스 요약</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">조회 결과를 업무 판단에 활용 가능한 인사이트로 정리</h3>
@@ -410,18 +462,18 @@
                         </p>
                     </div>
                 </article>
-            </div>
 
-            <article class="prototype-shot bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden mt-8">
-                <img src="./assets/screenshots/superset_dashboard.png" alt="Superset Ecommerce KPI Dashboard" class="prototype-image-wide">
-                <div class="p-6 md:p-8">
-                    <div class="text-xs font-bold text-sky-600 mb-2">EXTENSION · BI Dashboard</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">데이터마트 기반 BI 대시보드 확장</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed max-w-4xl">
-                        Copilot을 통한 자연어 질의뿐 아니라, 정제된 데이터마트를 Superset 대시보드로 연결해 주요 KPI를 지속적으로 모니터링할 수 있는 확장 가능성도 함께 검토했습니다.
-                    </p>
-                </div>
-            </article>
+                <article class="prototype-shot bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+                    <img src="./assets/screenshots/superset_dashboard.png" alt="Superset Ecommerce KPI Dashboard" class="prototype-image" onclick="openImageModal(this.src, this.alt)">
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-sky-600 mb-2">EXTENSION · BI Dashboard</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">데이터마트 기반 BI 대시보드 확장</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            정제된 데이터마트를 Superset 대시보드로 연결해 주요 KPI를 모니터링할 수 있는 확장 가능성을 함께 검토했습니다.
+                        </p>
+                    </div>
+                </article>
+            </div>
         </section>
 
         <section id="impact" class="scroll-mt-24">
@@ -597,6 +649,13 @@
             </p>
         </div>
     </footer>
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <button class="image-modal-close" type="button" onclick="closeImageModal()" aria-label="이미지 닫기">×</button>
+            <img id="imageModalImg" src="" alt="">
+            <div id="imageModalCaption" class="image-modal-caption"></div>
+        </div>
+    </div>
 
     <script>
         function switchTab(event, tabId) {
@@ -606,6 +665,35 @@
             event.currentTarget.classList.add('active');
             document.getElementById(tabId).classList.add('active');
         }
+
+        function openImageModal(src, alt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('imageModalImg');
+            const caption = document.getElementById('imageModalCaption');
+
+            modalImg.src = src;
+            modalImg.alt = alt || '프로토타입 화면 확대 이미지';
+            caption.textContent = alt || '';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            if (event && event.target && event.target.id !== 'imageModal') return;
+
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('imageModalImg');
+
+            modal.classList.remove('active');
+            modalImg.src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
     </script>
 </body>
 </html>
