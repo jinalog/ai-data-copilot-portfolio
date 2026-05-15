@@ -220,15 +220,23 @@
                 AI Data Insight <span class="gradient-text">Copilot</span>
             </h1>
             <p class="text-xl text-slate-600 leading-relaxed mb-8 max-w-3xl mx-auto">
-                SQL을 모르는 실무자도 자연어 질문으로 데이터를 조회하고 인사이트를 확인할 수 있도록 설계한 <strong>LLM 기반 데이터 분석 Copilot</strong>입니다. 자연어 질문을 SQL 생성, 검증, 오류 재시도, 결과 요약 흐름으로 연결해 데이터 활용의 장벽을 낮추고, 신뢰 가능한 의사결정 흐름을 만드는 것을 목표로 했습니다.
+                SQL을 모르는 실무자도 자연어 질문으로 데이터를 조회하고 인사이트를 확인할 수 있도록 개인 프로젝트로 설계·구현한 <strong>LLM 기반 데이터 분석 Copilot 프로토타입</strong>입니다. 자연어 질문을 SQL 생성, 검증, 오류 재시도, 결과 요약 흐름으로 연결해 데이터 활용의 장벽을 낮추고, 신뢰 가능한 의사결정 흐름을 만드는 것을 목표로 했습니다.
             </p>
+            <div class="flex flex-wrap justify-center gap-3 text-sm font-medium mb-6">
+                <a href="https://github.com/jinalog/ai-data-insight-copilot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-slate-800 border border-slate-200 shadow-sm rounded-full hover:border-slate-400 hover:shadow-md transition-all">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.371 6.839 9.728.5.095.683-.222.683-.494 0-.244-.009-.89-.014-1.747-2.782.62-3.369-1.375-3.369-1.375-.455-1.186-1.11-1.502-1.11-1.502-.908-.636.069-.623.069-.623 1.004.072 1.532 1.058 1.532 1.058.892 1.567 2.341 1.114 2.91.852.091-.663.35-1.114.636-1.37-2.221-.259-4.555-1.139-4.555-5.067 0-1.119.39-2.034 1.03-2.75-.103-.26-.446-1.302.098-2.713 0 0 .84-.276 2.75 1.05A9.43 9.43 0 0 1 12 6.958a9.43 9.43 0 0 1 2.504.345c1.909-1.326 2.747-1.05 2.747-1.05.546 1.411.203 2.454.1 2.713.641.716 1.028 1.631 1.028 2.75 0 3.938-2.338 4.805-4.566 5.06.359.318.678.945.678 1.904 0 1.374-.012 2.482-.012 2.819 0 .274.18.594.688.493C19.138 20.62 22 16.781 22 12.253 22 6.59 17.523 2 12 2Z" clip-rule="evenodd" />
+                    </svg>
+                    <span>View GitHub</span>
+                </a>
+            </div>
             <div class="flex flex-wrap justify-center gap-3 text-sm font-medium">
-                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-slate-700">Python</span>
-                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-indigo-700">OpenAI API</span>
-                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-teal-700">DuckDB</span>
-                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-rose-700">FastAPI</span>
-                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-amber-700">Streamlit</span>
-                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-slate-700">Docker</span>
+                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-indigo-700">LLM: OpenAI API</span>
+                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-rose-700">Backend: FastAPI</span>
+                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-teal-700">Data: DuckDB</span>
+                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-amber-700">UI: Streamlit</span>
+                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-slate-700">Deployment: Docker</span>
+                <span class="px-4 py-2 bg-white shadow-sm border border-slate-200 rounded-lg text-slate-700">Language: Python</span>
             </div>
         </div>
     </header>
@@ -239,7 +247,7 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-slate-900">프로젝트 개요 및 문제 정의</h2>
                 <p class="text-slate-500 mt-3 max-w-2xl mx-auto">
-                    이 프로젝트는 재직 중 데이터 업로드 기반 리포트 작성 과정에서 느꼈던 불편함을 바탕으로, 개인적으로 확장해 구현한 프로토타입입니다. 핵심 목표는 데이터 담당자의 지원이 필요했던 데이터 조회 과정을, 일반 실무자도 자연어로 접근할 수 있는 흐름으로 바꾸는 것이었습니다.
+                    데이터 조회와 리포트 작성 과정에서 반복적으로 발생하는 병목을 문제로 정의하고, 이를 자연어 기반 데이터 분석 Copilot 프로토타입으로 구현했습니다. 핵심 목표는 데이터 담당자의 지원이 필요했던 데이터 조회 과정을, 일반 실무자도 자연어로 접근할 수 있는 흐름으로 바꾸는 것이었습니다.
                 </p>
             </div>
 
@@ -626,15 +634,15 @@
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="bg-slate-50 rounded-2xl p-6 border-t-4 border-indigo-500">
                     <h4 class="font-bold text-indigo-700 mb-2">AI HUB 콘텐츠 기획</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">직무별 활용 사례, 프롬프트 예시, 검증 기준, 실패 사례를 콘텐츠화해 구성원이 AI를 더 쉽게 사용할 수 있도록 돕겠습니다.</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">직무별 활용 사례, 프롬프트 예시, 검증 기준, 실패 사례를 콘텐츠화해 구성원이 AI를 더 쉽게 활용할 수 있는 구조를 만들 수 있습니다.</p>
                 </div>
                 <div class="bg-slate-50 rounded-2xl p-6 border-t-4 border-teal-500">
                     <h4 class="font-bold text-teal-700 mb-2">AI 거버넌스 관점</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">AI 결과를 그대로 쓰지 않고, 데이터 범위·허용 동작·검증 기준을 두는 방식으로 안전한 활용 체계를 고민하겠습니다.</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">AI 결과를 그대로 쓰지 않고, 데이터 범위·허용 동작·검증 기준을 두는 방식으로 안전한 활용 체계를 설계할 수 있습니다.</p>
                 </div>
                 <div class="bg-slate-50 rounded-2xl p-6 border-t-4 border-rose-500">
                     <h4 class="font-bold text-rose-700 mb-2">신규 서비스 기획</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">고객과 실무자의 문제를 정의하고, AI가 제공할 수 있는 새로운 가치와 서비스 가능성을 프로토타입으로 빠르게 확인하겠습니다.</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">고객과 실무자의 문제를 정의하고, AI가 제공할 수 있는 새로운 가치와 서비스 가능성을 프로토타입으로 빠르게 검증할 수 있습니다.</p>
                 </div>
             </div>
         </section>
@@ -645,7 +653,7 @@
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-2xl font-bold text-white mb-6">실무 문제를 AI 기반 업무 흐름으로 구체화하는 AX 기획자가 되겠습니다.</h2>
             <p class="text-slate-400 mb-8 max-w-2xl mx-auto">
-                현업의 불편함을 문제로 정의하고, AI가 개입할 수 있는 지점을 찾고, 검증 가능한 프로토타입으로 빠르게 확인하는 방식으로 AX 과제를 구체화하겠습니다.
+                현업의 불편함을 문제로 정의하고, AI가 개입할 수 있는 지점을 찾고, 검증 가능한 프로토타입으로 빠르게 확인하는 방식으로 AI 기반 업무 과제를 구체화할 수 있습니다.
             </p>
         </div>
     </footer>
